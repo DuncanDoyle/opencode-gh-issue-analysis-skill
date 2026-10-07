@@ -6,8 +6,11 @@ The source folder retains `opencode-gh-issue-analysis-skill`; the runtime name i
 README.md, and a reusable handover template. No product implementation is involved.
 
 ## Decisions
-- Install by symlinking the source into OpenCode's global skills directory under
-  the runtime name. Do not install into the shared discovery directory by default.
+- Install runtime files through scripts/install-skill.sh into OpenCode's global
+  skills directory under the runtime name. Allow OPENCODE_SKILLS_DIR overrides.
+  Refuse destination symlinks and the source checkout itself. Do not install into
+  the shared discovery directory by default. This replaces the original symlink
+  approach at the user's request.
 - Put an OpenCode-only restriction in discovery metadata and the skill body.
   This is an instruction guardrail, not portable enforcement if installed elsewhere.
 - Keep all seven phases in a compact SKILL.md; use templates/HANDOVER.md for state.

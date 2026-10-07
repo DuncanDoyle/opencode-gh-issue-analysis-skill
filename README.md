@@ -13,22 +13,25 @@ The repository root is the skill, matching neighboring skill source repositories
 |---|---|
 | `SKILL.md` | Host restriction, phase routing, evidence gates, model handoffs |
 | `templates/HANDOVER.md` | Reusable investigation state and evidence template |
+| `scripts/install-skill.sh` | Installs runtime files into OpenCode's skills directory |
 | `design.md` | Agreed package design and scope |
 | `implementation-plan.md` | Implementation steps and validation record |
 
 ## Install for OpenCode only
 
-From this source directory, symlink into OpenCode's global skills directory.
-The destination name matches the skill's frontmatter:
+From this source directory:
 
 ```bash
-mkdir -p "$HOME/.config/opencode/skills"
-ln -s "$PWD" "$HOME/.config/opencode/skills/opencode-gh-issue-analysis"
+scripts/install-skill.sh  # -> ~/.config/opencode/skills/opencode-gh-issue-analysis
+OPENCODE_SKILLS_DIR=/somewhere scripts/install-skill.sh
 ```
 
-The command deliberately does not replace an existing installation. Inspect an
-existing destination before changing it. Source edits are immediately reflected
-through the symlink; reload OpenCode discovery as needed.
+The installer requires Bash and rsync, like the neighboring skill installers.
+It copies only SKILL.md and templates/, leaving source docs and Git metadata out.
+Rerun after source updates; stale files within the installed templates/ are removed.
+Reload OpenCode discovery as needed. If previously installed by symlink, inspect
+and remove that installation symlink first; the installer refuses symlink targets
+and installation into the source checkout itself.
 
 Do not install into `~/.agents/skills` for discovery isolation. Shared installation
 would expose the skill to other tools; the OpenCode-only description and body

@@ -22,3 +22,18 @@ home directory, configure OpenCode, initialize Git, or publish anything.
 - Manual routing review: default stop at phase 3, explicit investigation/fix scope,
   resume invalidation, unavailable model, inconclusive run, and rejected review.
 - OpenCode/Qwen execution not run; behavior with the local models remains unverified.
+
+## Installer update
+
+At the user's request, replace symlink installation with a script matching the
+neighboring skills. Copy SKILL.md and templates/ only, default to OpenCode's global
+skills directory, and allow OPENCODE_SKILLS_DIR overrides. Refuse symlink targets
+and installation into the source checkout. Update README.md and verify initial
+installation, updates, and refusal cases in temporary directories before delivery.
+The earlier creation-only restrictions above describe the initial task; subsequent
+user requests authorize GitHub publication and OpenCode installation.
+
+Installer validation: Bash syntax, clean install, exact runtime contents, update,
+stale template removal, destination/template symlink refusal, and source=self
+refusal all passed in temporary directories. Skill format and diff checks passed.
+Installation into the default home-directory destination was blocked by the sandbox.
